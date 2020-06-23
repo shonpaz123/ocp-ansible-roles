@@ -1,0 +1,7 @@
+---
+# defaults file for local-storage
+osd_devices: 
+- /dev/sdb
+
+mon_devices: 
+- /dev/sdc

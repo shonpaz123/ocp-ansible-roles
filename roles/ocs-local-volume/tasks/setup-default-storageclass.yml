@@ -1,0 +1,21 @@
+- name: Get the storageclass "{{ default_storageclass }}"
+  k8s_facts:
+    api_version: storage.k8s.io/v1
+    kind: StorageClass
+    name: "{{ default_storageclass }}"
+  register: reg_storageclass
+
+- debug: var=reg_storageclass
+
+- name: Unset the default storage class 
+  command: >- 
+    oc patch storageclass "{{ default_storageclass }}" --type merge
+    --patch='{"metadata":{"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
+- name: Set the storageclass "{{ default_storageclass }}" as default
+  command: >-
+    oc patch storageclass ocs-storagecluster-ceph-rbd --type merge
+    --patch='{"metadata":{"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+  when:
+    - reg_storageclass.resources[0]['metadata']['annotations']['storageclass.kubernetes.io/is-default-class'] is defined
+    - reg_storageclass.resources[0]['metadata']['annotations']['storageclass.kubernetes.io/is-default-class'] == "true"
+
