@@ -1,5 +1,9 @@
 ---
-# defaults file for local-storage
+storage_nodes:
+- "ocp4-tw4sx-w-b-nk4pj.us-east1-b.c.shon-267911.internal"
+- "ocp4-tw4sx-w-c-htmqv.us-east1-c.c.shon-267911.internal"
+- "ocp4-tw4sx-w-d-s4x76.us-east1-d.c.shon-267911.internal" 
+
 osd_devices: 
 - /dev/sdb
 
