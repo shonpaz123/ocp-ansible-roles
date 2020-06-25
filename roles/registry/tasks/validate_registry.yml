@@ -4,7 +4,7 @@
     dest: /etc/pki/ca-trust/source/anchors/registry.crt
 
 - name: Update certificate for validation 
-  command: update-ca-trust
+  command: update-ca-trust extract
 
 - name: Test registry access 
   uri: 
