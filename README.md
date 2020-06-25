@@ -13,4 +13,7 @@ The automation will create a Subscription, OperatorGroup and a Namespace for the
 This role installed the StorageCluster need for OCS in order to function. This role creates a Namespace, Subscription and an OperatorGroup. After creating those, the role will create your StorageCluster which will take the DeviceSets using the previously created PVs. At the end, the role will set the Ceph RBD StorageClass as the default one so that all workloads could used by the RBD StorageClass.
 In the `defaults/main.yml` file, just specify the current StorageClass so that the role will which one it should disable. 
 
+## Registry 
+
+The `registry` role will create a Docker V2 registry using ansible local connection. This approach is very useful for mirroring images before a disconnected Openshift installation or Catalog mirroring. 
 
